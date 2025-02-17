@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ink Archive</title>
+    <link rel="stylesheet" href="styles/canvas.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo-box">
+            <img src="images/logo.png" alt="Logo" class="logo">
+        </div>
+        <button class="top-bar-button" onclick="undo()">Undo</button>
+        <button class="top-bar-button" onclick="redo()">Redo</button>
+        <button class="top-bar-button" onclick="zoomIn()">Zoom In</button>
+        <button class="top-bar-button" onclick="zoomOut()">Zoom Out</button>
+        <button class="top-bar-button" onclick="expandCanvas()">Expand</button>
+        <button class="top-bar-button" onclick="flipCanvas()">Flip</button>
+    </div>
+
+    <div class="main-container">
+        <div class="left-sidebar">
+            <button class="tool-button" id="pencil" title="Pencil Tool">✏️</button>
+            <button class="tool-button" id="brush" title="Brush Tool">🖌️</button>
+            <button class="tool-button" id="eraser" title="Eraser Tool">🧽</button>
+            <button class="tool-button" id="color-picker" title="Color Picker Tool">🎨</button>
+            <button class="tool-button" id="bucket" title="Bucket Tool">🪣</button>
+            <button class="tool-button" id="select" title="Select Tool">🔲</button>
+            <button class="tool-button" id="transform" title="Transform Tool">↔️</button>
+            <button class="tool-button" id="hand" title="Hand Tool">✋</button>
+            <button class="tool-button" id="text" title="Text Tool">🔤</button>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="drawingCanvas" width="900" height="600"></canvas>
+        </div>
+
+        <div class="right-sidebar">
+            <div class="color-wheel">
+                <input type="color" id="colorPicker" value="#000000">
+            </div>
+            <div class="layers">
+                <h3>Layers</h3>
+                <div id="layerContainer"></div>
+                <button onclick="addLayer()">➕</button>
+                <button onclick="deleteLayer()">➖</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/canvas.js"></script>
+</body>
+</html>

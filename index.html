@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ink Archive</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+    <div class="background" style="background: url('images/Startup\ page.png') no-repeat center center / cover;"></div>
+    
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="brand-name">Ink Archive</span>
+        </div>
+        <div class="nav-buttons">
+            <button class="login-button">Log In</button>
+            <button class="draw-button" onclick="startDrawing()">Draw</button>
+        </div>
+    </header>
+    
+    <main class="content">
+        <div class="welcome-container">
+            <h1>Welcome to <br>Ink Archive</h1>
+            <p>A free drawing platform where you can paint, <br>share your artwork, and connect with fellow<br> artists in the forum. Let your creativity flow!</p>
+            <button class="start-button" onclick="startDrawing()">Start Drawing</button>
+        </div>
+    </main>    
+    
+    <script src="scripts/index.js"></script>
+</body>
+</html>
