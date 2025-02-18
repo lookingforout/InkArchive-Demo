@@ -204,10 +204,7 @@ function drawLayers() {
 }
 
 function rgbToHex(r, g, b) {
-    return '#' + [r, g, b].map(function(x) {
-        var hex = x.toString(16);
-        return hex.length === 1 ? '0' + hex : hex;
-    }).join('');
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
 document.addEventListener("keydown", (e) => {
@@ -223,85 +220,23 @@ document.addEventListener("keydown", (e) => {
 
 addLayer();
 
-function ColorPicker(element) {
-    this.element = element;
+document.addEventListener('DOMContentLoaded', () => {
+    const colorPicker = new iro.ColorPicker("#colorPicker", {
+        width: 180,
+        color: "#000000",
+        borderWidth: 2
+    });
 
-    this.init = function() {
-        var diameter = this.element.offsetWidth;
+    const colorIndicator = document.getElementById('color-indicator');
+    const hexCodeText = document.getElementById('hex-code');
 
-        var canvas = document.createElement('canvas');
-        canvas.height = diameter;
-        canvas.width = diameter;
-        this.canvas = canvas;
+    function updateColor(color) {
+        brushColor = color.hexString;  // Update the brush color
+        colorIndicator.style.backgroundColor = color.hexString;
+        hexCodeText.textContent = color.hexString;
+    }
 
-        this.renderColorWheel();
-
-        element.appendChild(canvas);
-
-        this.setupBindings();
-    };
-
-    this.renderColorWheel = function() {
-        var canvas = this.canvas;
-        var ctx = canvas.getContext('2d');
-
-        var radius = canvas.width / 2;
-        var toRad = (2 * Math.PI) / 360;
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        for (var angle = 0; angle < 360; angle++) {
-            var startAngle = angle * toRad;
-            var endAngle = startAngle + toRad;
-            ctx.beginPath();
-            ctx.moveTo(radius, radius);
-            ctx.arc(radius, radius, radius, startAngle, endAngle);
-            ctx.closePath();
-            ctx.fillStyle = 'hsl(' + angle + ', 100%, 50%)';
-            ctx.fill();
-        }
-
-        // Draw inner circle to create the ring effect
-        ctx.beginPath();
-        ctx.arc(radius, radius, radius * 0.7, 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff';
-        ctx.fill();
-    };
-
-    this.renderMouseCircle = function(x, y) {
-        var canvas = this.canvas;
-        var ctx = canvas.getContext('2d');
-
-        ctx.strokeStyle = 'rgb(255, 255, 255)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.stroke();
-    };
-
-    this.setupBindings = function() {
-        var canvas = this.canvas;
-        var ctx = canvas.getContext('2d');
-        var self = this;
-
-        canvas.addEventListener('click', function(e) {
-            var rect = canvas.getBoundingClientRect();
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
-
-            var imgData = ctx.getImageData(x, y, 1, 1).data;
-            var selectedColor = 'rgb(' + imgData[0] + ', ' + imgData[1] + ', ' + imgData[2] + ')';
-
-            // Update the brush color in your drawing application
-            brushColor = selectedColor;
-            document.getElementById('colorPicker').value = rgbToHex(imgData[0], imgData[1], imgData[2]);
-
-            self.renderMouseCircle(x, y);
-        }, false);
-    };
-
-    this.init();
-}
-
-new ColorPicker(document.querySelector('.color-space'));
+    colorPicker.on('color:change', (color) => {
+        updateColor(color);
+    });
+});
