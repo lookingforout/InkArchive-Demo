@@ -13,7 +13,7 @@ body, html {
 .top-bar {
     display: flex;
     align-items: center;
-    background: #333;
+    background: #333333;
     color: white;
     padding: 10px;
 }
@@ -48,7 +48,7 @@ body, html {
 
 .left-sidebar {
     width: 60px;
-    background: #222;
+    background: #333333;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,10 +56,10 @@ body, html {
 }
 
 .tool-button {
-    background: #444;
+    background: #4c4c4c;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     margin: 5px 0;
     width: 40px;
     height: 40px;
@@ -82,7 +82,7 @@ canvas {
 
 .right-sidebar {
     width: 200px;
-    background: #222;
+    background: #333333;
     color: white;
     padding: 10px;
     display: flex;
@@ -123,3 +123,44 @@ canvas {
     cursor: pointer;
     font-size: 14px;
 }
+
+.color-wheel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-picker {
+    width: 180px;
+    height: 180px;
+    position: relative;
+}
+
+.color-info {
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.color-indicator {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    background-color: #000000;
+}
+
+#hex-code {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 1px; 
+}
+
