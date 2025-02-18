@@ -38,8 +38,13 @@
 
         <div class="right-sidebar">
             <div class="color-wheel">
-                <input type="color" id="colorPicker" value="#000000">
-            </div>
+                <div id="colorPicker" class="color-picker"></div>
+                <div class="color-info">
+                    <div id="color-indicator" class="color-indicator"></div>
+                    <p id="hex-code">#000000</p>
+                </div>
+            </div>            
+                
             <div class="layers">
                 <h3>Layers</h3>
                 <div id="layerContainer"></div>
@@ -49,6 +54,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>        
     <script src="scripts/canvas.js"></script>
 </body>
 </html>
