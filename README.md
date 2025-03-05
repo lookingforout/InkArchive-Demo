@@ -1,3 +1,3 @@
-# InkArchive-Demo dosta tujno mmmdam
+# InkArchive-Demo
 Demo of InkArchive
 No frameworks and etc bruhhhh
